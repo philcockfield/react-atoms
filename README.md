@@ -11,7 +11,6 @@ Core UI component library.
 
 ## Test
     npm test
-    npm run tdd  # (Watch)
 
 
 
