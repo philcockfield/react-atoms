@@ -1,5 +1,5 @@
 # ui-core
-Core UI component library.
+Core UI component library (React).
 
 [![Build Status](https://travis-ci.org/philcockfield/ui-core.svg?branch=master)](https://travis-ci.org/philcockfield/ui-core)
 

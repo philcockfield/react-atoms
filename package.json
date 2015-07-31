@@ -1,7 +1,7 @@
 {
   "name": "ui-core",
   "version": "1.0.0",
-  "description": "Core UI component library.",
+  "description": "Core UI component library (React).",
   "dependencies": {
     "js-util": "^1.0.0"
   },
