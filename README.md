@@ -1,8 +1,7 @@
-# ui-components
+# ui-core
 Core UI component library.
 
-[![Build Status](https://travis-ci.org/philcockfield/ui-components.svg?branch=master)](https://travis-ci.org/philcockfield/ui-components)
-
+[![Build Status](https://travis-ci.org/philcockfield/ui-core.svg?branch=master)](https://travis-ci.org/philcockfield/ui-core)
 
 ## Run
     npm install

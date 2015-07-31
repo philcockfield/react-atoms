@@ -1,5 +1,5 @@
 {
-  "name": "ui-components",
+  "name": "ui-core",
   "version": "0.0.1",
   "description": "Core UI component library.",
   "dependencies": {},
@@ -20,16 +20,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/philcockfield/ui-components.git"
+    "url": "https://github.com/philcockfield/ui-core.git"
   },
-  "keywords": [
-    "ui",
-    "testing",
-    "react",
-    "modular",
-    "design"
-  ],
   "author": "Phil Cockfield",
   "license": "MIT",
-  "homepage": "https://github.com/philcockfield/ui-components"
+  "homepage": "https://github.com/philcockfield/ui-core"
 }
