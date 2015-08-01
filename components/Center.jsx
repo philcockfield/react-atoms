@@ -19,7 +19,6 @@ export default class Center extends React.Component {
 
     return {
       base: {
-        background: "rgba(255, 0, 0, 0.1)", //RED
         display: "inline-block",
         position: "absolute",
         left: horizontal ? "50%" : 0,
