@@ -9,7 +9,7 @@ import Radium from "radium";
 @Radium
 export default class Twisty extends React.Component {
   styles() {
-    let { width, color, opacity, isOpen } = this.props;
+    let { width, color, opacity, isOpen, isAnimated } = this.props;
     const narrow = Math.round(width * 0.666666)
     if (opacity < 0) { opacity = 0; }
     if (opacity > 1) { opacity = 1; }
@@ -20,11 +20,11 @@ export default class Twisty extends React.Component {
         width: 0,
         height: 0,
         opacity: opacity,
-        borderTop: (`${ narrow }px solid transparent`),
-        borderBottom: (`${ narrow }px solid transparent`),
+        borderTop: `${ narrow }px solid transparent`,
+        borderBottom: `${ narrow }px solid transparent`,
         borderLeft: `${ width }px solid ${ color }`,
-        transform: (isOpen ? "rotate(90deg)" : ""),
-        transition: "transform 0.15s",
+        transform: `rotate(${ isOpen ? "90deg" : "0deg" })`,
+        transition: isAnimated ? "transform 0.15s" : "none",
         cursor: "pointer"
       }
     };
@@ -40,6 +40,7 @@ export default class Twisty extends React.Component {
 
 // -----------------------------------------------------------------------------
 Twisty.propTypes = {
+    isAnimated: React.PropTypes.bool,
     isOpen: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     width: React.PropTypes.number,
@@ -47,6 +48,7 @@ Twisty.propTypes = {
     opacity: React.PropTypes.number
 };
 Twisty.defaultProps = {
+    isAnimated: true,
     isOpen: false,
     width: 8,
     color: "#000",
