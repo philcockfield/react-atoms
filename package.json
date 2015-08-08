@@ -3,7 +3,9 @@
   "version": "1.0.1",
   "description": "Core UI component library (React).",
   "dependencies": {
+    "lodash": "^3.6.0",
     "js-util": "^1.0.0",
+    "marked": "^0.3.5",
     "radium": "^0.13.5"
   },
   "devDependencies": {
@@ -13,7 +15,6 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.15.0",
-    "lodash": "^3.6.0",
     "mocha": "^2.2.1"
   },
   "scripts": {
