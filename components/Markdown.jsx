@@ -6,18 +6,43 @@ import * as util from "js-util";
 import marked from "marked";
 
 
+/**
+ * Trims a uniform indent from a multi-line string.
+ * This is useful when working with indented template
+ * strings (`...`) from ES6.
+ *
+ * @param {string} text: The text for format.
+ * @return {string} HTML.
+ */
+const trimIndent = (text) => {
+  if (text[0] !== "\n") { return text; }
+  let lines = text.split("\n");
+  if (lines.length < 2) { return text; }
+
+  const indent = lines[1].search(/\S/);
+  if (indent === 0) { return text; }
+
+  let result = [];
+  for (let i = 1; i < lines.length; i++) {
+    let line = lines[i];
+    result.push(line.substring(indent, line.length));
+  }
+
+  return result.join("\n");
+};
+
 
 /**
  * Formats text for display.
  * @param {string} text: The text for format.
  * @return {string} HTML.
  */
-export const formatText = (text) => {
-  if (util.isBlank(text)) { return text; }
-  text = text.toString();
+const toHtml = (text) => {
   text = escapeHtml(text);
   text = marked(text);
-  text = text.substring(3, text.length - 5) // Remove the wrapping <p>...</p> tags.
+  if (_.startsWith(text, "<p>")) {
+    text = text.substring(3, text.length - 5) // Remove the wrapping <p>...</p> tags.
+  }
   return text;
 };
 
@@ -25,7 +50,7 @@ export const formatText = (text) => {
 /**
  * Converts HTML chars into escaped versions.
  */
-export const escapeHtml = (text) => {
+const escapeHtml = (text) => {
   let isWithinBlock = false;
   let result = "";
   let i = 0;
@@ -59,7 +84,13 @@ export default class Markdown extends React.Component {
 
   render() {
     const styles = this.styles();
-    const html = formatText(this.props.children);
+
+    let html = this.props.children;
+    if (!util.isBlank(html)) {
+      if (this.props.trimIndent) { html = trimIndent(html); }
+      html = toHtml(html);
+    }
+
     return (
       <div
           style={ styles.base }
@@ -71,8 +102,11 @@ export default class Markdown extends React.Component {
 // API -------------------------------------------------------------------------
 Markdown.propTypes = {
   children: PropTypes.string,
-  display: PropTypes.oneOf(["block", "inline-block", "inline"])
+  display: PropTypes.oneOf(["block", "inline-block", "inline"]),
+  trimIndent: PropTypes.bool,
+
 };
 Markdown.defaultProps = {
-  display: "inline-block"
+  display: "inline-block",
+  trimIndent: false
 };
