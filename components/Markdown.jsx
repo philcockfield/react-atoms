@@ -38,7 +38,6 @@ const trimIndent = (text) => {
  * @return {string} HTML.
  */
 const toHtml = (text) => {
-  text = escapeHtml(text);
   text = marked(text);
   if (_.startsWith(text, "<p>")) {
     text = text.substring(3, text.length - 5) // Remove the wrapping <p>...</p> tags.
@@ -88,6 +87,7 @@ export default class Markdown extends React.Component {
     let html = this.props.children;
     if (!util.isBlank(html)) {
       if (this.props.trimIndent) { html = trimIndent(html); }
+      if (this.props.escapeHtml) { html = escapeHtml(html); }
       html = toHtml(html);
     }
 
@@ -104,9 +104,10 @@ Markdown.propTypes = {
   children: PropTypes.string,
   display: PropTypes.oneOf(["block", "inline-block", "inline"]),
   trimIndent: PropTypes.bool,
-
+  escapeHtml: PropTypes.bool
 };
 Markdown.defaultProps = {
   display: "inline-block",
-  trimIndent: false
+  trimIndent: false,
+  escapeHtml: false
 };
