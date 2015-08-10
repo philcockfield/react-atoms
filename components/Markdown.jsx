@@ -14,13 +14,15 @@ import marked from "marked";
  * @param {string} text: The text for format.
  * @return {string} HTML.
  */
-const trimIndent = (text) => {
-  if (text[0] !== "\n") { return text; }
+export const trimIndent = (text) => {
+  const DEFAULT_RESULT = { text, indent: 0 };
+  if (!_.isString(text)) { return DEFAULT_RESULT; }
+  if (text[0] !== "\n") { return DEFAULT_RESULT; }
   let lines = text.split("\n");
-  if (lines.length < 2) { return text; }
+  if (lines.length < 2) { return DEFAULT_RESULT; }
 
   const indent = lines[1].search(/\S/);
-  if (indent === 0) { return text; }
+  if (indent === 0) { return DEFAULT_RESULT; }
 
   let result = [];
   for (let i = 1; i < lines.length; i++) {
@@ -28,7 +30,10 @@ const trimIndent = (text) => {
     result.push(line.substring(indent, line.length));
   }
 
-  return result.join("\n");
+  return {
+    text: result.join("\n"),
+    indent
+  };
 };
 
 
@@ -86,7 +91,7 @@ export default class Markdown extends React.Component {
 
     let html = this.props.children;
     if (!util.isBlank(html)) {
-      if (this.props.trimIndent) { html = trimIndent(html); }
+      if (this.props.trimIndent) { html = trimIndent(html).text; }
       if (this.props.escapeHtml) { html = escapeHtml(html); }
       html = toHtml(html);
     }
