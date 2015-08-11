@@ -10,12 +10,24 @@ describe("AlignmentContainer", function() {
     this
       .width("100%")
       .height("100%")
-
-    this.load(
-      <AlignmentContainer>
-        <Foo></Foo>
-      </AlignmentContainer>
-    );
+      .load(
+        <AlignmentContainer>
+          <Foo width={100} height={100}></Foo>
+        </AlignmentContainer>
+      );
   });
 
+  section("align", () => {
+    it("`left top`", () => { this.props({ align:"left top" }) });
+    it("`left middle`", () => { this.props({ align:"left middle" }) });
+    it("`left bottom`", () => { this.props({ align:"left bottom" }) });
+
+    it("`center top`", () => { this.props({ align:"center top" }) });
+    it("`center middle`", () => { this.props({ align:"center middle" }) });
+    it("`center bottom`", () => { this.props({ align:"center bottom" }) });
+
+    it("`right top`", () => { this.props({ align:"right top" }) });
+    it("`right middle`", () => { this.props({ align:"right middle" }) });
+    it("`right bottom`", () => { this.props({ align:"right bottom" }) });
+  });
 });

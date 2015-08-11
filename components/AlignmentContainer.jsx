@@ -125,12 +125,8 @@ const EDGES = _.flatten([
 
 AlignmentContainer.propTypes = {
   children: PropTypes.node,
-  align: PropTypes.oneOf(EDGES),
-  width: PropTypes.numberOrString,
-  height: PropTypes.numberOrString
+  align: PropTypes.oneOf(EDGES)
 };
 AlignmentContainer.defaultProps = {
-  align: "left top",
-  width: "auto",
-  height: "auto"
+  align: "left top"
 };
