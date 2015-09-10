@@ -11,7 +11,6 @@ gulp.task("lint", function() {
     .pipe(eslint.format());
 });
 
-
 gulp.task("build", function() {
   return gulp.src(SOURCE_PATH)
     .pipe(babel({ stage: 1 }))

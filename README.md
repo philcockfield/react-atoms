@@ -1,16 +1,21 @@
 # ui-core
-Core UI component library (React).
+Common UI components (React).
 
 [![Build Status](https://travis-ci.org/philcockfield/ui-core.svg?branch=master)](https://travis-ci.org/philcockfield/ui-core)
 
-## Run
-    npm install
-    npm start
 
+## Source vs. Transpiled Files
+The source ES2015 files are housed within the `/src` folder.  
 
-## Test
-    npm test
+These are built using babel into corresponding folder(s) at the root of the project using `gulp build`.
+There is no master `index.js` to the library allowing selective inclusion of components via `require/import` statements
+so that unused code is not included into the consuming project, eg:
 
+    var AlignmentContainer = require("core-ui/components/AlignmentContainer");
+
+or
+
+    import AlignmentContainer from "core-ui/components/AlignmentContainer";
 
 
 
