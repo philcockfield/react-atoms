@@ -1,7 +1,9 @@
 # ui-core
-Common UI components (React).
 
 [![Build Status](https://travis-ci.org/philcockfield/ui-core.svg?branch=master)](https://travis-ci.org/philcockfield/ui-core)
+
+Common UI components (React).
+
 
 
 ## Source vs. Transpiled Files
