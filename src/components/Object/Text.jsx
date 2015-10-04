@@ -28,7 +28,9 @@ export default class Text extends React.Component {
         fontSize: this.props.size,
         fontWeight: "normal",
         fontStyle: this.props.italic ? "italic" : "normal",
-        color: COLORS[this.props.color]
+        color: COLORS[this.props.color],
+        marginLeft: this.props.marginLeft,
+        marginRight: this.props.marginRight
       }
     });
   }
@@ -48,10 +50,14 @@ Text.propTypes = {
   italic: PropTypes.bool,
   size: PropTypes.numberOrString,
   color: PropTypes.oneOf(Object.keys(COLORS)),
+  marginLeft: PropTypes.numberOrString,
+  marginRight: PropTypes.numberOrString
 };
 Text.defaultProps = {
   inline: true,
   italic: false,
   size: 12,
-  color: "darkGrey"
+  color: "darkGrey",
+  marginLeft: 0,
+  marginRight: 0
 };

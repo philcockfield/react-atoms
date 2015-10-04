@@ -3,6 +3,7 @@ import Radium from "radium";
 import { css, PropTypes } from "js-util/react";
 import Text from "./Text";
 import Twisty from "../Twisty";
+import Primitive, { isPrimitive } from "./Primitive";
 
 
 /**
@@ -18,18 +19,20 @@ export default class Value extends React.Component {
 
   render() {
     const styles = this.styles();
-    const { label, italic, size } = this.props;
+    const { label, italic, size, value } = this.props;
     const textProps = { italic, size };
+    const elLabel = label && <Text color="purple" { ...textProps }>{ label }</Text>
 
-    console.log("props", this.props);
-
-    const elLabel = label ? <Text color="purple" { ...textProps }>{ label }</Text> : null
-
+    let elValue;
+    if (isPrimitive(value)) {
+      elValue = <Primitive value={ value } { ...textProps }/>
+    }
 
     return (
       <div style={ styles.base }>
         { elLabel }
-        { elLabel ? <Text { ...textProps }>:</Text> : null }
+        { elLabel && <Text { ...textProps } marginRight={4}>:</Text> }
+        { elValue }
       </div>
     );
   }
@@ -37,9 +40,12 @@ export default class Value extends React.Component {
 
 // API -------------------------------------------------------------------------
 Value.propTypes = {
-  children: PropTypes.node,
+  value: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
   label: PropTypes.string,
-  italic: PropTypes.bool,
-  size: PropTypes.numberOrString
+  italic: Text.propTypes.italic,
+  size: Text.propTypes.size
 };
-Value.defaultProps = {};
+Value.defaultProps = {
+  italic: Text.defaultProps.italic,
+  size: Text.defaultProps.size
+};

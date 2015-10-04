@@ -1,7 +1,7 @@
 "use strict"
 import React from "react";
 import Primitive from "../../components/Object/Primitive";
-import { styleSections } from "./Text.spec";
+import { inlineSection, italicSection, sizeSection } from "./Text.spec";
 
 
 describe("Primitive", function() {
@@ -20,5 +20,7 @@ describe("Primitive", function() {
     it("`object` (error)", () => this.load( <Primitive value={{ foo: 123 }}/> ));
   });
 
-  styleSections.call(this);
+  inlineSection.call(this);
+  italicSection.call(this);
+  sizeSection.call(this);
 });

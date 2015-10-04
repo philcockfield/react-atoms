@@ -11,6 +11,18 @@ const COLORS = {
   "Boolean": "blue"
 };
 
+/**
+ * Determines whether the given value is primitive.
+ */
+export const isPrimitive = (value) => {
+  if (R.isNil(value)) {
+    return true;
+  } else {
+    const isType = (type) => R.is(type, value);
+    return R.any(isType, [String, Number, Boolean]);
+  }
+};
+
 
 
 /**
@@ -43,4 +55,8 @@ Primitive.propTypes = {
   italic: Text.propTypes.italic,
   size: Text.propTypes.size
 };
-Primitive.defaultProps = {};
+Primitive.defaultProps = {
+  inline: Text.defaultProps.inline,
+  italic: Text.defaultProps.italic,
+  size: Text.defaultProps.size
+};
