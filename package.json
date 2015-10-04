@@ -7,6 +7,7 @@
     "lodash": "^3.6.0",
     "marked": "^0.3.5",
     "radium": "^0.13.5",
+    "ramda": "^0.17.1",
     "react": "^0.13.3"
   },
   "devDependencies": {
