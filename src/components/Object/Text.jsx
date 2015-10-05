@@ -31,16 +31,25 @@ export default class Text extends React.Component {
         lineHeight: "1.4em",
         color: COLORS[this.props.color],
         marginLeft: this.props.marginLeft,
-        marginRight: this.props.marginRight
+        marginRight: this.props.marginRight,
+        cursor: this.props.onClick ? "pointer" : "default"
       }
     });
   }
 
+  handleClick(e) {
+    const { onClick } = this.props;
+    if (onClick) {
+      onClick({ args: e });
+    }
+  }
+
   render() {
     const styles = this.styles();
+    const handleClick = this.handleClick.bind(this);
     return this.props.inline
-        ? <span style={ styles.base }>{ this.props.children }</span>
-        : <div style={ styles.base }>{ this.props.children }</div>
+        ? <span style={ styles.base } onClick={ handleClick }>{ this.props.children }</span>
+        : <div style={ styles.base } onClick={ handleClick }>{ this.props.children }</div>
   }
 }
 
@@ -52,7 +61,8 @@ Text.propTypes = {
   size: PropTypes.numberOrString,
   color: PropTypes.oneOf(Object.keys(COLORS)),
   marginLeft: PropTypes.numberOrString,
-  marginRight: PropTypes.numberOrString
+  marginRight: PropTypes.numberOrString,
+  onClick: PropTypes.func,
 };
 Text.defaultProps = {
   inline: true,

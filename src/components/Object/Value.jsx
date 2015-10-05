@@ -47,17 +47,23 @@ export default class Value extends React.Component {
     const { label, italic, size, value, level, showTwisty } = this.props;
     const { isExpanded } = this.state;
     const textProps = { italic, size };
-    const elLabel = label && <Text color="purple" { ...textProps }>{ label }</Text>;
     const isPrimitive = this.isPrimitive();
 
-    let elTwisty;
+    let elTwisty, handleTwistyClick;
     if (showTwisty === true && !isPrimitive) {
+      handleTwistyClick = this.handleTwistyClick.bind(this);
       elTwisty =  <div style={ styles.twisty }>
                     <Twisty
                         isOpen={ isExpanded }
-                        onClick={ this.handleTwistyClick.bind(this) }/>
+                        onClick={ handleTwistyClick }/>
                   </div>
     }
+
+    const elLabel = label && <Text
+                                color="purple"
+                                onClick={ handleTwistyClick }
+                                { ...textProps }>{ label }</Text>;
+
 
     let elValue;
     if (isPrimitive) {
