@@ -12,20 +12,55 @@ import Complex from "./Complex";
  */
 @Radium
 export default class Value extends React.Component {
+  componentWillMount() {
+    this.setState({ isExpanded: this.props.isExpanded });
+  }
+
   styles() {
+    const { showTwisty } = this.props;
+    const twistySize = 10;
+    const indent = showTwisty === true ? twistySize + 1 : 0
+
     return css({
-      base: {}
+      base: {
+        position: "relative",
+        paddingLeft: indent
+      },
+      twisty: {
+        Absolute: [3, null, null, 0],
+        width: twistySize,
+        height: twistySize
+      }
     });
   }
 
+  isPrimitive() { return isPrimitive(this.props.value) }
+
+
+  handleTwistyClick(e) {
+    this.setState({ isExpanded: !this.state.isExpanded })
+  }
+
+
   render() {
     const styles = this.styles();
-    const { label, italic, size, value, isExpanded, level } = this.props;
+    const { label, italic, size, value, level, showTwisty } = this.props;
+    const { isExpanded } = this.state;
     const textProps = { italic, size };
-    const elLabel = label && <Text color="purple" { ...textProps }>{ label }</Text>
+    const elLabel = label && <Text color="purple" { ...textProps }>{ label }</Text>;
+    const isPrimitive = this.isPrimitive();
+
+    let elTwisty;
+    if (showTwisty === true && !isPrimitive) {
+      elTwisty =  <div style={ styles.twisty }>
+                    <Twisty
+                        isOpen={ isExpanded }
+                        onClick={ this.handleTwistyClick.bind(this) }/>
+                  </div>
+    }
 
     let elValue;
-    if (isPrimitive(value)) {
+    if (isPrimitive) {
       elValue = <Primitive value={ value } { ...textProps }/>;
     } else {
       elValue = <Complex
@@ -38,6 +73,7 @@ export default class Value extends React.Component {
 
     return (
       <div style={ styles.base }>
+        { elTwisty }
         { elLabel }
         { elLabel && <Text { ...textProps } marginRight={4}>:</Text> }
         { elValue }
@@ -54,10 +90,12 @@ Value.propTypes = {
   size: Text.propTypes.size,
   level: PropTypes.number,
   isExpanded: PropTypes.bool,
+  showTwisty: PropTypes.bool
 };
 Value.defaultProps = {
   italic: Text.defaultProps.italic,
   size: Text.defaultProps.size,
   level: 0,
-  isExpanded: false
+  isExpanded: false,
+  showTwisty: true
 };

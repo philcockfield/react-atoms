@@ -32,11 +32,16 @@ export default class Twisty extends React.Component {
     };
   }
 
+  handleClick(e) {
+    const { onClick, isOpen } = this.props;
+    if (onClick) {
+      onClick({ isOpen })
+    }
+  }
+
   render() {
     const styles = this.styles();
-    return (
-      <div style={ styles.base } />
-    );
+    return <div onClick={ this.handleClick.bind(this) } style={ styles.base } />;
   }
 }
 

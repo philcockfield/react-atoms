@@ -24,7 +24,7 @@ export default class ValuesList extends React.Component {
         paddingTop: 0,
         paddingRight: 0,
         paddingBottom: 0,
-        paddingLeft: "1.1em",
+        paddingLeft: "0.4em",
         fontSize: this.props.size,
         fontStyle: this.props.italic ? "italic" : "normal",
       }
@@ -41,7 +41,7 @@ export default class ValuesList extends React.Component {
                   label={ item.label }
                   value={ item.value }
                   level={ this.props.level + 1 }
-                  isExpanded={ true }
+                  isExpanded={ false }
                   size={ this.props.size }
                   italic={ this.props.italic }/>
              </li>

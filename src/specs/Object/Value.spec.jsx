@@ -11,13 +11,22 @@ describe("Value", function() {
   before(() => {
     this
       .align("top left")
-      .load( <Value label="foo">123</Value> );
+      .load( <Value
+                label="foo"
+                value={{ foo: 123, bar: { baz: "hello" }}}/>
+      );
   });
 
 
   section("`label`", () => {
     it("`null`", () => this.props({ label: null }));
     it("`'foo'`", () => this.props({ label: "foo" }));
+  });
+
+
+  section("showTwisty", () => {
+    it("`true`", () => this.props({ showTwisty:true }));
+    it("`false`", () => this.props({ showTwisty:false }));
   });
 
 
