@@ -19,7 +19,7 @@ export default class Value extends React.Component {
   styles() {
     const { showTwisty } = this.props;
     const twistySize = 10;
-    const indent = showTwisty === true ? twistySize + 1 : 0
+    const indent = showTwisty === true ? twistySize + 2 : 0
 
     return css({
       base: {

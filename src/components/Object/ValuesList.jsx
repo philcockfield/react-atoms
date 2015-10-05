@@ -24,7 +24,7 @@ export default class ValuesList extends React.Component {
         paddingTop: 0,
         paddingRight: 0,
         paddingBottom: 0,
-        paddingLeft: "0.4em",
+        paddingLeft: "0.2em",
         fontSize: this.props.size,
         fontStyle: this.props.italic ? "italic" : "normal",
       }

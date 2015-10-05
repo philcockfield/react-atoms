@@ -25,7 +25,11 @@ export default class Complex extends React.Component {
     const textStyles = { italic, size };
 
     // Prepare the label.
-    label = label === true ? value.constructor.name : label;
+    if (label === true) {
+      // Only use custom object names.
+      label = value.constructor.name;
+      if (R.any(R.equals(label), ["Object", "Array"])) { label = null; }
+    }
     const elLabel = label && <Text { ...textStyles } marginRight={4}>{ label }</Text>;
     const openChar = R.is(Array, value) ? "[" : "{";
     const closeChar = R.is(Array, value) ? "]" : "}";
