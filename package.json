@@ -1,7 +1,7 @@
 {
-  "name": "ui-core",
+  "name": "react-atoms",
   "version": "1.0.4",
-  "description": "Core UI component library (React).",
+  "description": "Low level react components (the 'atoms' or larger UI structures).",
   "dependencies": {
     "js-util": "^1.0.0",
     "lodash": "^3.6.0",
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/philcockfield/ui-core.git"
+    "url": "https://github.com/philcockfield/react-atoms.git"
   },
   "keywords": [
     "react-component"
   ],
   "author": "Phil Cockfield",
   "license": "MIT",
-  "homepage": "https://github.com/philcockfield/ui-core"
+  "homepage": "https://github.com/philcockfield/react-atoms"
 }

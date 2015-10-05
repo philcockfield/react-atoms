@@ -1,8 +1,7 @@
-# ui-core
+# react-atoms
+[![Build Status](https://travis-ci.org/philcockfield/react-atoms.svg?branch=master)](https://travis-ci.org/philcockfield/react-atoms)
 
-[![Build Status](https://travis-ci.org/philcockfield/ui-core.svg?branch=master)](https://travis-ci.org/philcockfield/ui-core)
-
-Common UI components (React).
+Low level react components (the 'atoms' or larger UI structures).
 
 
 # RENAME
