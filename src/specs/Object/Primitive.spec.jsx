@@ -1,13 +1,15 @@
 "use strict"
 import React from "react";
 import Primitive from "../../components/Object/Primitive";
-import { inlineSection, italicSection, sizeSection } from "./Text.spec";
+import { inlineSection, italicSection, sizeSection } from "./sections";
 
 
 describe("Primitive", function() {
   this.header(`## A simple primitive value.`);
   before(() => {
-    this.load( <Primitive value="My String" /> );
+    this
+      .align("top left")
+      .load( <Primitive value="My String" /> );
   });
 
   section("load", () => {
@@ -20,7 +22,6 @@ describe("Primitive", function() {
     it("`object` (error)", () => this.load( <Primitive value={{ foo: 123 }}/> ));
   });
 
-  inlineSection.call(this);
   italicSection.call(this);
   sizeSection.call(this);
 });

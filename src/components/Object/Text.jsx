@@ -28,6 +28,7 @@ export default class Text extends React.Component {
         fontSize: this.props.size,
         fontWeight: "normal",
         fontStyle: this.props.italic ? "italic" : "normal",
+        lineHeight: "1.4em",
         color: COLORS[this.props.color],
         marginLeft: this.props.marginLeft,
         marginRight: this.props.marginRight

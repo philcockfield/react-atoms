@@ -4,6 +4,7 @@ import { css, PropTypes } from "js-util/react";
 import Text from "./Text";
 import Twisty from "../Twisty";
 import Primitive, { isPrimitive } from "./Primitive";
+import Complex from "./Complex";
 
 
 /**
@@ -19,13 +20,20 @@ export default class Value extends React.Component {
 
   render() {
     const styles = this.styles();
-    const { label, italic, size, value } = this.props;
+    const { label, italic, size, value, isExpanded, level } = this.props;
     const textProps = { italic, size };
     const elLabel = label && <Text color="purple" { ...textProps }>{ label }</Text>
 
     let elValue;
     if (isPrimitive(value)) {
-      elValue = <Primitive value={ value } { ...textProps }/>
+      elValue = <Primitive value={ value } { ...textProps }/>;
+    } else {
+      elValue = <Complex
+                  value={ value }
+                  level={ level }
+                  label={ level === 0 }
+                  isExpanded={ isExpanded }
+                  { ...textProps }/>;
     }
 
     return (
@@ -43,9 +51,13 @@ Value.propTypes = {
   value: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
   label: PropTypes.string,
   italic: Text.propTypes.italic,
-  size: Text.propTypes.size
+  size: Text.propTypes.size,
+  level: PropTypes.number,
+  isExpanded: PropTypes.bool,
 };
 Value.defaultProps = {
   italic: Text.defaultProps.italic,
-  size: Text.defaultProps.size
+  size: Text.defaultProps.size,
+  level: 0,
+  isExpanded: false
 };

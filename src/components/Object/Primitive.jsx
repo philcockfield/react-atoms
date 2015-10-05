@@ -51,12 +51,10 @@ Primitive.propTypes = {
     PropTypes.number,
     PropTypes.bool
   ]),
-  inline: Text.propTypes.inline,
   italic: Text.propTypes.italic,
   size: Text.propTypes.size
 };
 Primitive.defaultProps = {
-  inline: Text.defaultProps.inline,
   italic: Text.defaultProps.italic,
   size: Text.defaultProps.size
 };
