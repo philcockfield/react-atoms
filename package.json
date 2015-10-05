@@ -1,6 +1,6 @@
 {
   "name": "react-atoms",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Low level react components (the 'atoms' or larger UI structures).",
   "dependencies": {
     "js-util": "^1.0.0",
