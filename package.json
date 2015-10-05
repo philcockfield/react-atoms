@@ -2,6 +2,11 @@
   "name": "react-atoms",
   "version": "1.0.6",
   "description": "Low level react components (the 'atoms' of larger UI structures).",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register",
+    "tdd": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register --watch",
+    "prepublish": "gulp build"
+  },
   "dependencies": {
     "js-util": "^1.0.0",
     "lodash": "^3.6.0",
@@ -18,10 +23,6 @@
     "gulp-babel": "^5.2.1",
     "gulp-eslint": "^0.15.0",
     "mocha": "^2.2.1"
-  },
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register",
-    "tdd": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register --watch"
   },
   "repository": {
     "type": "git",
