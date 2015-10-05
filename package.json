@@ -3,6 +3,7 @@
   "version": "1.0.8",
   "description": "Low level react components (the 'atoms' of larger UI structures).",
   "scripts": {
+    "start": "node ./specs.js",
     "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register",
     "tdd": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register --watch",
     "prepublish": "gulp build"
