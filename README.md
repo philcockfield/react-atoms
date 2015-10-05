@@ -1,7 +1,7 @@
 # react-atoms
 [![Build Status](https://travis-ci.org/philcockfield/react-atoms.svg?branch=master)](https://travis-ci.org/philcockfield/react-atoms)
 
-Low level react components (the 'atoms' or larger UI structures).
+Low level react components (the 'atoms' of larger UI structures).
 
 
 # RENAME
