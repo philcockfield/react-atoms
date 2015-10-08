@@ -26,4 +26,12 @@ describe("Twisty", function() {
     it("`false`", () => this.props({ isOpen: false }));
   });
 
+  section("verticalAlign", () => {
+    const size = (value) => {
+        this.width(value).height(value);
+        return this;
+      };
+    it("`true`", () => size(50).props({ verticalAlign: true }));
+    it("`false`", () => size(null).props({ verticalAlign: false }));
+  });
 });
