@@ -4,10 +4,6 @@
 Low level react components (the 'atoms' of larger UI structures).
 
 
-# RENAME
-- react-shared
-- react-object
-
 
 ## Source vs. Transpiled Files
 The source ES2015 files are housed within the `/src` folder.  
