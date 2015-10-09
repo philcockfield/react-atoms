@@ -19,5 +19,16 @@ or
     import AlignmentContainer from "react-atoms/components/AlignmentContainer";
 
 
+## Explore in the [UIHarness](http://uiharness.com/)
+    git clone https://github.com/philcockfield/react-atoms.git
+    cd react-atroms
+    npm install
+    npm start
+
+![ui-harness](https://cloud.githubusercontent.com/assets/185555/10385888/688768d0-6e04-11e5-9263-2e9469e652d9.png)
+
+
+
+
 ---
 ### License: MIT
