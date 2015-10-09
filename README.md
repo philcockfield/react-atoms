@@ -12,11 +12,11 @@ These are built using babel into corresponding folder(s) at the root of the proj
 There is no master `index.js` to the library allowing selective inclusion of components via `require/import` statements
 so that unused code is not included into the consuming project, eg:
 
-    var AlignmentContainer = require("core-ui/components/AlignmentContainer");
+    var AlignmentContainer = require("react-atoms/components/AlignmentContainer");
 
 or
 
-    import AlignmentContainer from "core-ui/components/AlignmentContainer";
+    import AlignmentContainer from "react-atoms/components/AlignmentContainer";
 
 
 
