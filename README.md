@@ -21,7 +21,7 @@ or
 
 ## Explore in the [UIHarness](http://uiharness.com/)
     git clone https://github.com/philcockfield/react-atoms.git
-    cd react-atroms
+    cd react-atoms
     npm install
     npm start
 
