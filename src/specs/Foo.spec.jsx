@@ -23,7 +23,7 @@ describe("Foo", function() {
   section("border", () => {
     it("`border:true`", () => { this.props({ border: true }) });
     it("`border:false`", () => { this.props({ border: false }) });
-    it("`border:solid 5px red`", () => { this.props({ border: "solid 5px red" }) });
+    it("`border:solid 5px tomato`", () => { this.props({ border: "solid 5px tomato" }) });
     it("`dashed:true`", () => { this.props({ dashed: true }) });
     it("`dashed:false`", () => { this.props({ dashed: false }) });
   });
