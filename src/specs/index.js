@@ -1,7 +1,7 @@
 describe("react-atoms", function() {
+  require("./AlignmentContainer.spec");
+  require("./FlexEdge.spec");
   require("./Foo.spec");
   require("./Markdown.spec");
-  require("./AlignmentContainer.spec");
-  require("./AlignmentContainer.spec");
   require("./Twisty.spec");
 });
