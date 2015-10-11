@@ -3,6 +3,9 @@ import React from "react";
 import Radium from "radium";
 import { css, PropTypes } from "js-util/react";
 
+const CHILD_POSITION = ["near", "middle", "far"];
+
+
 
 /**
  * Flexible spacing container.
@@ -21,49 +24,50 @@ import { css, PropTypes } from "js-util/react";
 export default class FlexEdge extends React.Component {
   styles() {
     return css({
-      base: {}
+      base: {
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "stretch",
+        flexDirection: this.props.orientation === "vertical"
+                          ? "column"
+                          : "row"
+      },
+      near: { position: "relative" },
+      middle: {
+        position: "relative",
+        flex: 1
+      },
+      far: { position: "relative" }
     });
   }
 
   render() {
     const styles = this.styles();
-    let { children } = this.props;
+    const children = React.Children.toArray(this.props.children);
 
+    // TODO:
+    console.log("TODO: Take only the first 3 children");
 
-    console.log("React.Children", React.Children);
-    const f = React.Children.map(children, item => item);
-    console.log("f", f);
-
-    console.log("children.map", children.map);
-
-    // if (!R.is(Array, children)) { children = [children]; }
-
-    // const f = children.map(item => {
-    //   console.log("item", item);
-    //   return item;
-    // });
-    // console.log("f", f);
-
-    // const [left, center, right] = children;
-    // const left = children.0();
-    // const center = children[1];
-    // const right = children[2];
-    //
-    //
-    // console.log("left", left);
-    // console.log("center", center);
-    // console.log("right", right);
-    //
-
-    return (
-      <div style={ styles.base }>
-        { children }
-      </div>
-    );
+    // Wrap children in style containers.
+    let elChildren;
+    if (children.length > 0) {
+      elChildren = children.map((child, i) => {
+          const style = styles[CHILD_POSITION[i]];
+          return <div key={i} style={ style }>
+                   { child }
+                 </div>
+        });
+    }
+    return <div style={ styles.base }>{ elChildren }</div>;
   }
 }
 
 // API -------------------------------------------------------------------------
 FlexEdge.propTypes = {
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
 };
-FlexEdge.defaultProps = {};
+FlexEdge.defaultProps = {
+  orientation: "horizontal"
+};

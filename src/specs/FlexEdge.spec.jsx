@@ -4,16 +4,14 @@ import Foo from "../components/Foo";
 import { lorem } from "js-util/test";
 
 
-const createFoo = (text, width) => {
-    return <Foo
-        radius={4}
-        padding={4}
-        width={width}
-        fontSize={11}
-        minHeight={30}>
-      { text }
-    </Foo>
-};
+
+const Sample = (props) => (
+    <Foo
+      radius={4}
+      padding={4}
+      fontSize={11}
+      minHeight={30} {...props}>{ props.children }</Foo>
+  );
 
 
 describe("FlexEdge", function() {
@@ -22,28 +20,84 @@ describe("FlexEdge", function() {
   before(() => {
     this
       .width(550)
+      .height(550)
       .load(
-        <FlexEdge>
-          { createFoo("left") }
-          { createFoo(lorem(300)) }
-          { createFoo("right") }
+        <FlexEdge orientation="horizontal">
+          <Sample>near</Sample>
+          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
     );
   });
 
   section("width", () => {
+    it("`null`", () => this.width(null));
     it("`550px`", () => this.width(550));
-    it("`80%`", () => this.width("80%"));
+    it("`100%`", () => this.width("100%"));
   });
 
-  section("load", () => {
-    it("`empty`", () => this.load( <FlexEdge/> ));
-    it("`left/center/right`", () => {
+  section("height", () => {
+    it("`null`", () => this.height(null));
+    it("`550px`", () => this.height(550));
+    it("`100%`", () => this.height("100%"));
+  });
+
+  it("`load: empty`", () => this.load( <FlexEdge/> ));
+
+  section("load - horizontal", () => {
+    it("`icon/main`", () => {
       this.load(
-        <FlexEdge>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
+        <FlexEdge orientation="horizontal">
+          <Sample>icon</Sample>
+          <Sample>main</Sample>
+        </FlexEdge>
+      );
+    });
+    it("`near/middle/far`", () => {
+      this.load(
+        <FlexEdge orientation="horizontal">
+          <Sample>near</Sample>
+          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample width={100} height={100}>far</Sample>
+        </FlexEdge>
+      );
+    });
+
+    it("`<nothing>/middle/far`", () => {
+      this.load(
+        <FlexEdge orientation="horizontal">
+          <div/>
+          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample width={100} height={100}>far</Sample>
+        </FlexEdge>
+      );
+    });
+  });
+
+  section("load - vertical", () => {
+    it("`icon/main`", () => {
+      this.load(
+        <FlexEdge orientation="vertical">
+          <Sample>icon</Sample>
+          <Sample absolute={0}>main</Sample>
+        </FlexEdge>
+      );
+    });
+    it("`near/middle/far`", () => {
+      this.load(
+        <FlexEdge orientation="vertical">
+          <Sample>near</Sample>
+          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample width={100} height={100}>far</Sample>
+        </FlexEdge>
+      );
+    });
+    it("`<nothing>/middle/far`", () => {
+      this.load(
+        <FlexEdge orientation="vertical">
+          <div/>
+          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );
     });

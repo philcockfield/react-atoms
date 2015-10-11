@@ -29,15 +29,26 @@ describe("Foo", function() {
   });
 
   section("position", () => {
-    it("`absolute: 0`", () => { this.props({ absolute:0 }) });
-    it("`absolute: '20 30 50 null'`", () => { this.props({ absolute: "20 30 50 null" }) });
-    it("`absolute: [60, 10]`", () => { this.props({ absolute: [60, 10] }) });
+    const setSize = () => this.width("100%").height("100%");
+    it("`absolute: 0`", () => { setSize().props({ absolute:0 }) });
+    it("`absolute: '20 30 50 null'`", () => { setSize().props({ absolute: "20 30 50 null" }) });
+    it("`absolute: [60, 10]`", () => { setSize().props({ absolute: [60, 10] }) });
   });
 
   section("shadow", () => {
     it("`shadow: null`", () => { this.props({ shadow: null }) });
     it("`shadow: 0.2`", () => { this.props({ shadow: 0.2 }) });
     it("`shadow: <string>`", () => { this.props({ shadow: "10px 5px 3px 3px rgba(0, 0, 0, 0.1)" }) });
+  });
+
+  section("width", () => {
+    it("`null`", () => this.props({ width: null }));
+    it("`250px`", () => this.props({ width: 250 }));
+  });
+
+  section("height", () => {
+    it("`null`", () => this.props({ height: null }));
+    it("`250px`", () => this.props({ height: 250 }));
   });
 
 });
