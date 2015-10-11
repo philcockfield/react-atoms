@@ -47,18 +47,16 @@ export default class FlexEdge extends React.Component {
     const styles = this.styles();
     const children = React.Children.toArray(this.props.children);
 
-    // TODO:
-    console.log("TODO: Take only the first 3 children");
-
     // Wrap children in style containers.
     let elChildren;
     if (children.length > 0) {
       elChildren = children.map((child, i) => {
-          const style = styles[CHILD_POSITION[i]];
-          return <div key={i} style={ style }>
-                   { child }
-                 </div>
-        });
+            const style = styles[CHILD_POSITION[i]];
+            return <div key={i} style={ style }>
+                     { child }
+                   </div>
+          });
+      elChildren = R.take(3, elChildren);
     }
     return <div style={ styles.base }>{ elChildren }</div>;
   }

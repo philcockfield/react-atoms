@@ -42,7 +42,6 @@ describe("FlexEdge", function() {
     it("`100%`", () => this.height("100%"));
   });
 
-  it("`load: empty`", () => this.load( <FlexEdge/> ));
 
   section("load - horizontal", () => {
     it("`icon/main`", () => {
@@ -103,4 +102,19 @@ describe("FlexEdge", function() {
     });
   });
 
+  section("edge cases", () => {
+    it("`load: empty`", () => this.load( <FlexEdge/> ));
+
+    it("`5 children`", () => {
+      this.load(
+        <FlexEdge orientation="vertical">
+          <Sample>1</Sample>
+          <Sample absolute={0}>2</Sample>
+          <Sample>3</Sample>
+          <Sample>4</Sample>
+          <Sample>5</Sample>
+        </FlexEdge>
+      );
+    });
+  });
 });
