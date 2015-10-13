@@ -1,6 +1,6 @@
 {
   "name": "react-atoms",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Low level react components (the 'atoms' of larger UI structures).",
   "scripts": {
     "start": "node ./ui-harness",
