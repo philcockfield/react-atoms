@@ -56,7 +56,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="horizontal">
           <Sample>near</Sample>
-          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={{ maxHeight: "90%" }}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );

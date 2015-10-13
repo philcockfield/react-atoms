@@ -4,7 +4,11 @@ import Radium from "radium";
 import { css, PropTypes } from "js-util/react";
 
 const CHILD_POSITION = ["near", "middle", "far"];
-
+const CHILD_STYLE_PROPS = [
+  "maxHeight",
+  "overflow",
+  "overflowY",
+];
 
 
 /**
@@ -22,7 +26,20 @@ const CHILD_POSITION = ["near", "middle", "far"];
  */
 @Radium
 export default class FlexEdge extends React.Component {
-  styles() {
+  styles(children) {
+    const position = (index, styles = {}) => {
+        const child = children[index];
+        if (child && child.props.flexEdge) {
+          // Add styles declared on the child element.
+          CHILD_STYLE_PROPS.forEach(key => {
+            if (child.props.flexEdge[key]) {
+              styles[key] = child.props.flexEdge[key];
+            }
+          });
+        }
+        return styles;
+      };
+
     return css({
       base: {
         position: "relative",
@@ -34,18 +51,18 @@ export default class FlexEdge extends React.Component {
                           ? "column"
                           : "row"
       },
-      near: { position: "relative" },
-      middle: {
+      near: position(0, { position: "relative" }),
+      middle: position(1, {
         position: "relative",
         flex: 1
-      },
-      far: { position: "relative" }
+      }),
+      far: position(2, { position: "relative" })
     });
   }
 
   render() {
-    const styles = this.styles();
     const children = React.Children.toArray(this.props.children);
+    const styles = this.styles(children);
 
     // Wrap children in style containers.
     let elChildren;
@@ -64,7 +81,7 @@ export default class FlexEdge extends React.Component {
 
 // API -------------------------------------------------------------------------
 FlexEdge.propTypes = {
-  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+  orientation: PropTypes.oneOf(["horizontal", "vertical"])
 };
 FlexEdge.defaultProps = {
   orientation: "horizontal"
