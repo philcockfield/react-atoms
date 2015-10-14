@@ -98,6 +98,7 @@ export default class Markdown extends React.Component {
 
     return (
       <div
+        className={ this.props.className }
         style={ styles.base }
         dangerouslySetInnerHTML={{ __html: html }} />
     );
@@ -109,7 +110,8 @@ Markdown.propTypes = {
   children: PropTypes.string,
   display: PropTypes.oneOf(["block", "inline-block", "inline"]),
   trimIndent: PropTypes.bool,
-  escapeHtml: PropTypes.bool
+  escapeHtml: PropTypes.bool,
+  className: PropTypes.string,
 };
 Markdown.defaultProps = {
   display: "inline-block",
