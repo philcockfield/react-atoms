@@ -98,8 +98,8 @@ export default class Markdown extends React.Component {
 
     return (
       <div
-          style={ styles.base }
-          dangerouslySetInnerHTML={{ __html: html }} />
+        style={ styles.base }
+        dangerouslySetInnerHTML={{ __html: html }} />
     );
   }
 }
