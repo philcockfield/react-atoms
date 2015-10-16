@@ -8,7 +8,27 @@ const CHILD_STYLE_PROPS = [
   "maxHeight",
   "overflow",
   "overflowY",
+  "flex"
 ];
+
+const childStyle = (props) => {
+    const styles = { position: "relative" };
+    if (props === "*" || R.is(Number, props)) {
+      // A single number is assumed to be the "flex" value.
+      props = { flex: props };
+    }
+
+    // Add styles declared on the child element.
+    CHILD_STYLE_PROPS.forEach(key => {
+        if (props[key]) {
+          styles[key] = props[key];
+        }
+      });
+
+    // Finish up.
+    return css(styles);
+};
+
 
 
 /**
@@ -23,23 +43,20 @@ const CHILD_STYLE_PROPS = [
  *      | Avatar |  ...content...   |
  *      | Avatar |  ...content...   | Checkbox |
  *
+ *
+ *  <FlexEdge align="horizontal">
+ *    <div>left</div>
+ *    <div flexEdge={1}>middle (stretched)</div>
+ *    <div>right</div>
+ *  </FlexEdge>
+ *
+ * Note the `flexEdge` property, either pass a number that will
+ * be interpreted as the `flex` style to apply to the container
+ * element, or pass an {object} with style properties.
  */
 @Radium
 export default class FlexEdge extends React.Component {
   styles(children) {
-    const position = (index, styles = {}) => {
-        const child = children[index];
-        if (child && child.props.flexEdge) {
-          // Add styles declared on the child element.
-          CHILD_STYLE_PROPS.forEach(key => {
-            if (child.props.flexEdge[key]) {
-              styles[key] = child.props.flexEdge[key];
-            }
-          });
-        }
-        return styles;
-      };
-
     return css({
       base: {
         position: "relative",
@@ -50,13 +67,7 @@ export default class FlexEdge extends React.Component {
         flexDirection: this.props.orientation === "vertical"
                           ? "column"
                           : "row"
-      },
-      near: position(0, { position: "relative" }),
-      middle: position(1, {
-        position: "relative",
-        flex: 1
-      }),
-      far: position(2, { position: "relative" })
+      }
     });
   }
 
@@ -68,12 +79,11 @@ export default class FlexEdge extends React.Component {
     let elChildren;
     if (children.length > 0) {
       elChildren = children.map((child, i) => {
-            const style = styles[CHILD_POSITION[i]];
-            return <div key={i} style={ style }>
-                     { child }
-                   </div>
-          });
-      elChildren = R.take(3, elChildren);
+          if (child) {
+            const style = child.props.flexEdge && childStyle(child.props.flexEdge);
+            return <div key={i} style={ style }>{ child }</div>
+          }
+        });
     }
     return <div style={ styles.base }>{ elChildren }</div>;
   }

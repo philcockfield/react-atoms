@@ -24,7 +24,7 @@ describe("FlexEdge", function() {
       .load(
         <FlexEdge orientation="horizontal">
           <Sample>near</Sample>
-          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={1}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
     );
@@ -48,7 +48,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="horizontal">
           <Sample>icon</Sample>
-          <Sample>main</Sample>
+          <Sample flexEdge={1}>main</Sample>
         </FlexEdge>
       );
     });
@@ -56,7 +56,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="horizontal">
           <Sample>near</Sample>
-          <Sample absolute={0} flexEdge={{ maxHeight: "90%" }}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={{ flex: 1, maxHeight: "90%" }}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );
@@ -66,7 +66,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="horizontal">
           <div/>
-          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={1}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );
@@ -78,7 +78,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="vertical">
           <Sample>icon</Sample>
-          <Sample absolute={0}>main</Sample>
+          <Sample absolute={0} flexEdge={1}>main</Sample>
         </FlexEdge>
       );
     });
@@ -86,7 +86,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="vertical">
           <Sample>near</Sample>
-          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={1}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );
@@ -95,7 +95,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="vertical">
           <div/>
-          <Sample absolute={0}>{ "middle --- " + lorem(300) }</Sample>
+          <Sample absolute={0} flexEdge={1}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>
       );
@@ -109,7 +109,7 @@ describe("FlexEdge", function() {
       this.load(
         <FlexEdge orientation="vertical">
           <Sample>1</Sample>
-          <Sample absolute={0}>2</Sample>
+          <Sample height={100}>2</Sample>
           <Sample>3</Sample>
           <Sample>4</Sample>
           <Sample>5</Sample>
