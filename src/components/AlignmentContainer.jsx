@@ -1,4 +1,4 @@
-import _ from "lodash";
+import R from "ramda";
 import React from "react";
 import Radium from "radium";
 import { css, PropTypes } from "js-util/react";
@@ -8,7 +8,7 @@ const VERTICAL = ["top", "middle", "bottom"];
 const DEFAULT_HORIZONTAL = "center";
 const DEFAULT_VERTICAL = "top";
 
-const contains = (array, value) => { return _.any(array, item => item === value) };
+const contains = (array, value) => { return R.any(item => item === value, array) };
 const isVertical = (value) => { return contains(VERTICAL, value) };
 const isHorizontal = (value) => { return contains(HORIZONTAL, value) };
 
@@ -115,7 +115,7 @@ const combine = (left, right) => {
     });
     return result;
   };
-const EDGES = _.flatten([
+const EDGES = R.flatten([
   HORIZONTAL,
   VERTICAL,
   combine(HORIZONTAL, VERTICAL),
