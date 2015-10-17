@@ -8,7 +8,8 @@ const CHILD_STYLE_PROPS = [
   "maxHeight",
   "overflow",
   "overflowY",
-  "flex"
+  "flex",
+  "background"
 ];
 
 const childStyle = (props) => {
