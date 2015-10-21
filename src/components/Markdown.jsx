@@ -111,7 +111,7 @@ Markdown.propTypes = {
   display: PropTypes.oneOf(["block", "inline-block", "inline"]),
   trimIndent: PropTypes.bool,
   escapeHtml: PropTypes.bool,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 Markdown.defaultProps = {
   display: "inline-block",

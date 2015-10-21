@@ -21,8 +21,11 @@ describe("Markdown", function() {
   const load = (markdown) => {
       this
         .width("100%")
-        .load( <Markdown>{ markdown }</Markdown> );
+        .load( <Markdown>{ simple }</Markdown> );
     };
 
-  it("simple", () => load(simple));
+
+  section("markdown", () => {
+    it("simple", () => load(simple));
+  });
 });
