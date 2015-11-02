@@ -5,4 +5,5 @@ describe("react-atoms", function() {
   require("./Foo.spec");
   require("./Markdown.spec");
   require("./Twisty.spec");
+  require("./GithubButton.spec");
 });
