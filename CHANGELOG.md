@@ -7,7 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Added
 #### Changed
 #### Deprecated
+
 #### Removed
+- Removed 'lodash' (replaced with `ramda`).
+
 #### Fixed
 #### Security
 

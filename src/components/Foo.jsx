@@ -1,4 +1,4 @@
-import _ from "lodash";
+import R from "ramda";
 import React from "react";
 import Radium from "radium";
 import { css, PropTypes } from "./react-util";
@@ -55,15 +55,15 @@ class Foo extends React.Component {
     const borderStyle = this.props.dashed ? "dashed" : "solid";
     const defaultBorder = `${ borderStyle } 1px rgba(0, 0, 0, 0.3)`;
     let border = this.props.border;
-    if (_.isBoolean(border)) {
+    if (R.is(Boolean, border)) {
       border = border ? defaultBorder : "solid 1px transparent";
     } else {
-      border = _.isString(border) ? border : defaultBorder;
+      border = R.is(String, border) ? border : defaultBorder;
     }
 
     // Shadow.
     let boxShadow = this.props.shadow;
-    if (_.isNumber(boxShadow)) {
+    if (R.is(Number, boxShadow)) {
       boxShadow = `0px 3px 10px 5px rgba(0,0,0, ${ boxShadow })`;
     }
 

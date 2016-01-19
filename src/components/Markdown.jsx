@@ -1,4 +1,4 @@
-import _ from "lodash";
+import R from "ramda";
 import React from "react";
 import Radium from "radium";
 import { css, PropTypes } from "./react-util";
@@ -16,7 +16,7 @@ import marked from "marked";
  */
 export const trimIndent = (text) => {
   const DEFAULT_RESULT = { text, indent: 0 };
-  if (!_.isString(text)) { return DEFAULT_RESULT; }
+  if (!R.is(String, text)) { return DEFAULT_RESULT; }
   if (text[0] !== "\n") { return DEFAULT_RESULT; }
   let lines = text.split("\n");
   if (lines.length < 2) { return DEFAULT_RESULT; }
@@ -44,7 +44,7 @@ export const trimIndent = (text) => {
  */
 const toHtml = (text) => {
   text = marked(text);
-  if (_.startsWith(text, "<p>")) {
+  if (text.startsWith("<p>")) {
     text = text.substring(3, text.length - 5) // Remove the wrapping <p>...</p> tags.
   }
   return text;
