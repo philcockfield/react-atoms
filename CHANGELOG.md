@@ -5,12 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 #### Added
+
 #### Changed
+- Updated to Babel-6.
+- Referencing `PropTypes` from `react-schema` not `js-util`
+- Updated component `PropTypes` to use static properties.
+
+        static propTypes = {};
+        static defaultProps = {};
+
+
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
-
-## [0.0.1] - YYYY-MM-DD
-#### Added
-Initial creation and publish.

@@ -1,7 +1,8 @@
 import R from "ramda";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "js-util/react";
+import { css, PropTypes } from "../react-util";
+
 
 const HORIZONTAL = ["left", "center", "right"];
 const VERTICAL = ["top", "middle", "bottom"];
@@ -13,11 +14,21 @@ const isVertical = (value) => { return contains(VERTICAL, value) };
 const isHorizontal = (value) => { return contains(HORIZONTAL, value) };
 
 
+
+
+
 /**
  * Flex-box container providing edge alignment of child content.
  */
-@Radium
-export default class AlignmentContainer extends React.Component {
+class AlignmentContainer extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    align: PropTypes.oneOf(EDGES)
+  };
+  static defaultProps = {
+    align: "left top"
+  };
+
   styles() {
     const { horizontal, vertical, width, height } = this.edges();
     let direction, alignItems, justifyContent;
@@ -123,10 +134,4 @@ const EDGES = R.flatten([
 ]);
 
 
-AlignmentContainer.propTypes = {
-  children: PropTypes.node,
-  align: PropTypes.oneOf(EDGES)
-};
-AlignmentContainer.defaultProps = {
-  align: "left top"
-};
+export default Radium(AlignmentContainer);

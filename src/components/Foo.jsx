@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "js-util/react";
+import { css, PropTypes } from "../react-util";
 const { numberOrString, boolOrString } = PropTypes;
 
 
@@ -9,11 +9,41 @@ const { numberOrString, boolOrString } = PropTypes;
  * Stub component helpful for quickly laying up a
  * screen with placeholders.
  */
-@Radium
-export default class Foo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+class Foo extends React.Component {
+  static propTypes = {
+    display: PropTypes.oneOf(["none", "block", "inline-block", "inline"]),
+    width: numberOrString,
+    height: numberOrString,
+    minWidth: numberOrString,
+    minHeight: numberOrString,
+    padding: numberOrString,
+    margin: numberOrString,
+    marginTop: numberOrString,
+    marginBottom: numberOrString,
+    marginLeft: numberOrString,
+    radius: numberOrString,
+    fontSize: numberOrString,
+    background: boolOrString,
+    color: PropTypes.string,
+    dashed: PropTypes.bool,
+    border: boolOrString,
+    absolute: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(numberOrString)
+    ]),
+    shadow: numberOrString
+  };
+  static defaultProps = {
+    display: "block",
+    padding: 10,
+    radius: 0,
+    fontSize: 16,
+    background: "rgba(255, 0, 0, 0.1)",
+    color: css.black.toString(),
+    dashed: true
+  };
+
 
   styles() {
     // Background.
@@ -78,37 +108,4 @@ export default class Foo extends React.Component {
 }
 
 
-// API -------------------------------------------------------------------------
-Foo.propTypes = {
-  display: PropTypes.oneOf(["none", "block", "inline-block", "inline"]),
-  width: numberOrString,
-  height: numberOrString,
-  minWidth: numberOrString,
-  minHeight: numberOrString,
-  padding: numberOrString,
-  margin: numberOrString,
-  marginTop: numberOrString,
-  marginBottom: numberOrString,
-  marginLeft: numberOrString,
-  radius: numberOrString,
-  fontSize: numberOrString,
-  background: boolOrString,
-  color: PropTypes.string,
-  dashed: PropTypes.bool,
-  border: boolOrString,
-  absolute: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.arrayOf(numberOrString)
-  ]),
-  shadow: numberOrString
-};
-Foo.defaultProps = {
-  display: "block",
-  padding: 10,
-  radius: 0,
-  fontSize: 16,
-  background: "rgba(255, 0, 0, 0.1)",
-  color: css.black.toString(),
-  dashed: true
-};
+export default Radium(Foo);

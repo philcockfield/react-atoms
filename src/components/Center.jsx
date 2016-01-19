@@ -5,8 +5,16 @@ import Radium from "radium";
 /**
  * Centers content vertically and/or horizontally.
  */
-@Radium
-export default class Center extends React.Component {
+class Center extends React.Component {
+  static propTypes = {
+    horizontal: React.PropTypes.bool,
+    vertical: React.PropTypes.bool
+  };
+  static defaultProps = {
+    horizontal: true,
+    vertical: true
+  };
+
   styles() {
     const { horizontal, vertical } = this.props;
     let transform = "";
@@ -36,12 +44,5 @@ export default class Center extends React.Component {
   }
 }
 
-// API -------------------------------------------------------------------------
-Center.propTypes = {
-  horizontal: React.PropTypes.bool,
-  vertical: React.PropTypes.bool
-};
-Center.defaultProps = {
-  horizontal: true,
-  vertical: true
-};
+
+export default Radium(Center);

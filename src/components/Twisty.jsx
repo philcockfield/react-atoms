@@ -1,14 +1,31 @@
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "js-util/react";
+import { css, PropTypes } from "../react-util";
 
 
 /**
  * A triangular bullet that toggles to express
  * an "open" or "closed" state.
  */
-@Radium
-export default class Twisty extends React.Component {
+class Twisty extends React.Component {
+  static propTypes = {
+    isAnimated: PropTypes.bool,
+    isOpen: PropTypes.bool,
+    onClick: PropTypes.func,
+    width: PropTypes.number,
+    color: PropTypes.string,
+    opacity: PropTypes.number,
+    margin: PropTypes.numberOrString
+  };
+  static defaultProps = {
+    isAnimated: true,
+    isOpen: false,
+    width: 8,
+    color: "#000",
+    opacity: 0.3,
+    margin: 0
+  };
+
   styles() {
     let { width, color, opacity, isOpen, isAnimated, margin } = this.props;
     const narrow = Math.round(width * 0.666666)
@@ -44,21 +61,4 @@ export default class Twisty extends React.Component {
   }
 }
 
-// -----------------------------------------------------------------------------
-Twisty.propTypes = {
-  isAnimated: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  onClick: PropTypes.func,
-  width: PropTypes.number,
-  color: PropTypes.string,
-  opacity: PropTypes.number,
-  margin: PropTypes.numberOrString
-};
-Twisty.defaultProps = {
-  isAnimated: true,
-  isOpen: false,
-  width: 8,
-  color: "#000",
-  opacity: 0.3,
-  margin: 0
-};
+export default Radium(Twisty);

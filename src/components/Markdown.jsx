@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "js-util/react";
+import { css, PropTypes } from "../react-util";
 import * as util from "js-util";
 import marked from "marked";
 
@@ -76,8 +76,20 @@ const escapeHtml = (text) => {
 /**
  * Renders markdown as HTML.
  */
-@Radium
-export default class Markdown extends React.Component {
+class Markdown extends React.Component {
+  static propTypes = {
+    children: PropTypes.string,
+    display: PropTypes.oneOf(["block", "inline-block", "inline"]),
+    trimIndent: PropTypes.bool,
+    escapeHtml: PropTypes.bool,
+    className: PropTypes.string
+  };
+  static defaultProps = {
+    display: "inline-block",
+    trimIndent: false,
+    escapeHtml: false
+  };
+
   styles() {
     return css({
       base: {
@@ -105,16 +117,5 @@ export default class Markdown extends React.Component {
   }
 }
 
-// API -------------------------------------------------------------------------
-Markdown.propTypes = {
-  children: PropTypes.string,
-  display: PropTypes.oneOf(["block", "inline-block", "inline"]),
-  trimIndent: PropTypes.bool,
-  escapeHtml: PropTypes.bool,
-  className: PropTypes.string
-};
-Markdown.defaultProps = {
-  display: "inline-block",
-  trimIndent: false,
-  escapeHtml: false
-};
+
+export default Radium(Markdown);

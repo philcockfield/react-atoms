@@ -1,7 +1,7 @@
 import R from "ramda";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "js-util/react";
+import { css, PropTypes } from "../react-util";
 
 const CHILD_POSITION = ["near", "middle", "far"];
 const CHILD_STYLE_PROPS = [
@@ -55,8 +55,14 @@ const childStyle = (props) => {
  * be interpreted as the `flex` style to apply to the container
  * element, or pass an {object} with style properties.
  */
-@Radium
-export default class FlexEdge extends React.Component {
+class FlexEdge extends React.Component {
+  static propTypes = {
+    orientation: PropTypes.oneOf(["horizontal", "vertical"])
+  };
+  static defaultProps = {
+    orientation: "horizontal"
+  };
+
   styles(children) {
     return css({
       base: {
@@ -90,10 +96,5 @@ export default class FlexEdge extends React.Component {
   }
 }
 
-// API -------------------------------------------------------------------------
-FlexEdge.propTypes = {
-  orientation: PropTypes.oneOf(["horizontal", "vertical"])
-};
-FlexEdge.defaultProps = {
-  orientation: "horizontal"
-};
+
+export default Radium(FlexEdge);
