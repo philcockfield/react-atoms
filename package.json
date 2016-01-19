@@ -4,8 +4,8 @@
   "description": "Low level react components (the 'atoms' of larger UI structures).",
   "scripts": {
     "start": "node ./ui-harness",
-    "test": "./node_modules/mocha/bin/mocha --recursive --require ./src/register-babel",
-    "tdd": "./node_modules/mocha/bin/mocha --recursive --require ./src/register-babel --watch",
+    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel-register",
+    "tdd": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel-register --watch",
     "prepublish": "gulp lint && gulp build"
   },
   "dependencies": {
@@ -20,7 +20,6 @@
   "devDependencies": {
     "babel-core": "^6.3.21",
     "babel-eslint": "5.0.0-beta6",
-    "babel-loader": "^6.2.0",
     "babel-plugin-transform-class-properties": "^6.3.13",
     "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
