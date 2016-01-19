@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "../react-util";
+import { css, PropTypes } from "./react-util";
 import * as util from "js-util";
 import marked from "marked";
 

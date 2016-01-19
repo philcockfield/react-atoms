@@ -1,7 +1,7 @@
 import R from "ramda";
 import React from "react";
 import Radium from "radium";
-import { css, PropTypes } from "../react-util";
+import { css, PropTypes } from "./react-util";
 
 const CHILD_POSITION = ["near", "middle", "far"];
 const CHILD_STYLE_PROPS = [
