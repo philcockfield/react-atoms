@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Removed
 - Removed 'lodash' (replaced with `ramda`).
+- Updated to `react@0.14.6`.
 
 #### Fixed
 #### Security
