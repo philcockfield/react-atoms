@@ -13,6 +13,20 @@ const contains = (array, value) => { return R.any(item => item === value, array)
 const isVertical = (value) => { return contains(VERTICAL, value) };
 const isHorizontal = (value) => { return contains(HORIZONTAL, value) };
 
+const combine = (left, right) => {
+      const result = [];
+      left.forEach(leftItem => {
+        right.forEach(rightItem => { result.push(`${ leftItem } ${ rightItem }`); });
+      });
+      return result;
+    };
+const EDGES = R.flatten([
+  HORIZONTAL,
+  VERTICAL,
+  combine(HORIZONTAL, VERTICAL),
+  combine(VERTICAL, HORIZONTAL)
+]);
+
 
 
 
@@ -116,22 +130,6 @@ class AlignmentContainer extends React.Component {
     );
   }
 }
-
-
-// API -------------------------------------------------------------------------
-const combine = (left, right) => {
-    const result = [];
-    left.forEach(leftItem => {
-      right.forEach(rightItem => { result.push(`${ leftItem } ${ rightItem }`); });
-    });
-    return result;
-  };
-const EDGES = R.flatten([
-  HORIZONTAL,
-  VERTICAL,
-  combine(HORIZONTAL, VERTICAL),
-  combine(VERTICAL, HORIZONTAL)
-]);
 
 
 export default Radium(AlignmentContainer);
