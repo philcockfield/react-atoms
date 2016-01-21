@@ -40,7 +40,7 @@ class Foo extends React.Component {
     radius: 0,
     fontSize: 16,
     background: "rgba(255, 0, 0, 0.1)",
-    color: css.black.toString(),
+    color: "black",
     dashed: true
   };
 
