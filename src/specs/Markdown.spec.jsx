@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "../components/Markdown";
-import { lorem } from "js-util/test";
+import { lorem } from "./util";
 
 
 // const simple = {};

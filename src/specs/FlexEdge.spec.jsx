@@ -1,7 +1,7 @@
 import React from "react";
 import FlexEdge from "../components/FlexEdge";
 import Foo from "../components/Foo";
-import { lorem } from "js-util/test";
+import { lorem } from "./util";
 
 
 
