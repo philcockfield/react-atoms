@@ -1,7 +1,7 @@
-import R from "ramda";
-import React from "react";
-import Radium from "radium";
-import { css, PropTypes } from "./util";
+import R from 'ramda';
+import React from 'react';
+import Radium from 'radium';
+import { css, PropTypes } from './util';
 const { numberOrString, boolOrString } = PropTypes;
 
 
@@ -11,7 +11,7 @@ const { numberOrString, boolOrString } = PropTypes;
  */
 class Foo extends React.Component {
   static propTypes = {
-    display: PropTypes.oneOf(["none", "block", "inline-block", "inline"]),
+    display: PropTypes.oneOf(['none', 'block', 'inline-block', 'inline']),
     width: numberOrString,
     height: numberOrString,
     minWidth: numberOrString,
@@ -21,6 +21,7 @@ class Foo extends React.Component {
     marginTop: numberOrString,
     marginBottom: numberOrString,
     marginLeft: numberOrString,
+    marginRight: numberOrString,
     radius: numberOrString,
     fontSize: numberOrString,
     background: boolOrString,
@@ -30,18 +31,19 @@ class Foo extends React.Component {
     absolute: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf(numberOrString)
+      PropTypes.arrayOf(numberOrString),
     ]),
-    shadow: numberOrString
+    shadow: numberOrString,
+    children: PropTypes.node,
   };
   static defaultProps = {
-    display: "block",
+    display: 'block',
     padding: 10,
     radius: 0,
     fontSize: 16,
-    background: "rgba(255, 0, 0, 0.1)",
-    color: "black",
-    dashed: true
+    background: 'rgba(255, 0, 0, 0.1)',
+    color: 'black',
+    dashed: true,
   };
 
 
@@ -52,11 +54,11 @@ class Foo extends React.Component {
     if (background === true) { background = Foo.defaultProps.background; }
 
     // Border.
-    const borderStyle = this.props.dashed ? "dashed" : "solid";
+    const borderStyle = this.props.dashed ? 'dashed' : 'solid';
     const defaultBorder = `${ borderStyle } 1px rgba(0, 0, 0, 0.3)`;
     let border = this.props.border;
     if (R.is(Boolean, border)) {
-      border = border ? defaultBorder : "solid 1px transparent";
+      border = border ? defaultBorder : 'solid 1px transparent';
     } else {
       border = R.is(String, border) ? border : defaultBorder;
     }
@@ -68,9 +70,9 @@ class Foo extends React.Component {
     }
 
     const base = {
-      fontFamily: "'Helvetica Neue', sans-serif",
+      fontFamily: '"Helvetica Neue", sans-serif',
       fontWeight: 400,
-      boxSizing: "border-box",
+      boxSizing: 'border-box',
 
       background,
       border,
@@ -93,8 +95,7 @@ class Foo extends React.Component {
       marginRight: this.props.marginRight,
     };
 
-
-    return css({ base: base });
+    return css({ base });
   }
 
   render() {

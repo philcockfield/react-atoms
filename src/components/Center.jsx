@@ -1,5 +1,6 @@
-import React from "react";
-import Radium from "radium";
+import React from 'react';
+import Radium from 'radium';
+import { PropTypes } from './util';
 
 
 /**
@@ -7,32 +8,33 @@ import Radium from "radium";
  */
 class Center extends React.Component {
   static propTypes = {
-    horizontal: React.PropTypes.bool,
-    vertical: React.PropTypes.bool
+    horizontal: PropTypes.bool,
+    vertical: PropTypes.bool,
+    children: PropTypes.node,
   };
   static defaultProps = {
     horizontal: true,
-    vertical: true
+    vertical: true,
   };
 
   styles() {
     const { horizontal, vertical } = this.props;
-    let transform = "";
+    let transform = '';
     if (horizontal && vertical) {
-      transform = "translate(-50%, -50%)";
+      transform = 'translate(-50%, -50%)';
     } else {
-      if (horizontal) { transform = "translateX(-50%)"; }
-      if (vertical) { transform = "translateY(-50%)"; }
+      if (horizontal) { transform = 'translateX(-50%)'; }
+      if (vertical) { transform = 'translateY(-50%)'; }
     }
 
     return {
       base: {
-        display: "inline-block",
-        position: "absolute",
-        left: horizontal ? "50%" : 0,
-        top: vertical ? "50%": 0,
-        transform: transform
-      }
+        transform,
+        display: 'inline-block',
+        position: 'absolute',
+        left: horizontal ? '50%' : 0,
+        top: vertical ? '50%' : 0,
+      },
     };
   }
 

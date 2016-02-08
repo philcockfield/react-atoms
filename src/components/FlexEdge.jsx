@@ -1,33 +1,32 @@
-import R from "ramda";
-import React from "react";
-import Radium from "radium";
-import { css, PropTypes } from "./util";
+import R from 'ramda';
+import React from 'react';
+import Radium from 'radium';
+import { css, PropTypes } from './util';
 
-const CHILD_POSITION = ["near", "middle", "far"];
 const CHILD_STYLE_PROPS = [
-  "maxHeight",
-  "overflow",
-  "overflowY",
-  "flex",
-  "background"
+  'maxHeight',
+  'overflow',
+  'overflowY',
+  'flex',
+  'background',
 ];
 
 const childStyle = (props) => {
-    const styles = { position: "relative" };
-    if (props === "*" || R.is(Number, props)) {
-      // A single number is assumed to be the "flex" value.
-      props = { flex: props };
+  const styles = { position: 'relative' };
+  if (props === '*' || R.is(Number, props)) {
+    // A single number is assumed to be the 'flex' value.
+    props = { flex: props };
+  }
+
+  // Add styles declared on the child element.
+  CHILD_STYLE_PROPS.forEach(key => {
+    if (props[key]) {
+      styles[key] = props[key];
     }
+  });
 
-    // Add styles declared on the child element.
-    CHILD_STYLE_PROPS.forEach(key => {
-        if (props[key]) {
-          styles[key] = props[key];
-        }
-      });
-
-    // Finish up.
-    return css(styles);
+  // Finish up.
+  return css(styles);
 };
 
 
@@ -45,7 +44,7 @@ const childStyle = (props) => {
  *      | Avatar |  ...content...   | Checkbox |
  *
  *
- *  <FlexEdge align="horizontal">
+ *  <FlexEdge align='horizontal'>
  *    <div>left</div>
  *    <div flexEdge={1}>middle (stretched)</div>
  *    <div>right</div>
@@ -57,24 +56,25 @@ const childStyle = (props) => {
  */
 class FlexEdge extends React.Component {
   static propTypes = {
-    orientation: PropTypes.oneOf(["horizontal", "vertical"])
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    children: PropTypes.node,
   };
   static defaultProps = {
-    orientation: "horizontal"
+    orientation: 'horizontal',
   };
 
-  styles(children) {
+  styles() {
     return css({
       base: {
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "stretch",
-        flexDirection: this.props.orientation === "vertical"
-                          ? "column"
-                          : "row"
-      }
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'stretch',
+        flexDirection: this.props.orientation === 'vertical'
+                          ? 'column'
+                          : 'row',
+      },
     });
   }
 
@@ -86,11 +86,11 @@ class FlexEdge extends React.Component {
     let elChildren;
     if (children.length > 0) {
       elChildren = children.map((child, i) => {
-          if (child) {
-            const style = child.props.flexEdge && childStyle(child.props.flexEdge);
-            return <div key={i} style={ style }>{ child }</div>
-          }
-        });
+        if (child) {
+          const style = child.props.flexEdge && childStyle(child.props.flexEdge);
+          return <div key={i} style={ style }>{ child }</div>;
+        }
+      });
     }
     return <div style={ styles.base }>{ elChildren }</div>;
   }
