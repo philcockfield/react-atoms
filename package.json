@@ -17,7 +17,7 @@
     "ui-harness": "^3.3.7"
   },
   "devDependencies": {
-    "chai": "^2.2.0",
+    "chai": "^3.5.0",
     "js-babel-dev": "^6.0.2",
     "mocha": "^2.2.1"
   },
