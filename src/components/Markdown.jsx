@@ -1,9 +1,9 @@
-import R from "ramda";
-import React from "react";
-import Radium from "radium";
-import { css, PropTypes } from "./util";
-import * as util from "js-util";
-import marked from "marked";
+import R from 'ramda';
+import React from 'react';
+import Radium from 'radium';
+import { css, PropTypes } from './util';
+import * as util from 'js-util';
+import marked from 'marked';
 
 
 /**
@@ -17,22 +17,22 @@ import marked from "marked";
 export const trimIndent = (text) => {
   const DEFAULT_RESULT = { text, indent: 0 };
   if (!R.is(String, text)) { return DEFAULT_RESULT; }
-  if (text[0] !== "\n") { return DEFAULT_RESULT; }
-  let lines = text.split("\n");
+  if (text[0] !== '\n') { return DEFAULT_RESULT; }
+  const lines = text.split('\n');
   if (lines.length < 2) { return DEFAULT_RESULT; }
 
   const indent = lines[1].search(/\S/);
   if (indent === 0) { return DEFAULT_RESULT; }
 
-  let result = [];
+  const result = [];
   for (let i = 1; i < lines.length; i++) {
-    let line = lines[i];
+    const line = lines[i];
     result.push(line.substring(indent, line.length));
   }
 
   return {
-    text: result.join("\n"),
-    indent
+    text: result.join('\n'),
+    indent,
   };
 };
 
@@ -44,8 +44,8 @@ export const trimIndent = (text) => {
  */
 const toHtml = (text) => {
   text = marked(text);
-  if (text.startsWith("<p>")) {
-    text = text.substring(3, text.length - 5) // Remove the wrapping <p>...</p> tags.
+  if (text.startsWith('<p>')) {
+    text = text.substring(3, text.length - 5); // Remove the wrapping <p>...</p> tags.
   }
   return text;
 };
@@ -56,16 +56,16 @@ const toHtml = (text) => {
  */
 const escapeHtml = (text) => {
   let isWithinBlock = false;
-  let result = "";
+  let result = '';
   let i = 0;
   for (let char of text) {
     // Don't escape <HTML> that is wihtin the markdown `tick` block.
-    if (char === "`") { isWithinBlock = !isWithinBlock; }
+    if (char === '`') { isWithinBlock = !isWithinBlock; }
     if (!isWithinBlock) {
-      if (char === "<") { char = "&lt;"; }
-      if (char === ">") { char = "&gt;"; }
+      if (char === '<') { char = '&lt;'; }
+      if (char === '>') { char = '&gt;'; }
     }
-    result += char
+    result += char;
     i += 1;
   }
   return result;
@@ -79,22 +79,22 @@ const escapeHtml = (text) => {
 class Markdown extends React.Component {
   static propTypes = {
     children: PropTypes.string,
-    display: PropTypes.oneOf(["block", "inline-block", "inline"]),
+    display: PropTypes.oneOf(['block', 'inline-block', 'inline']),
     trimIndent: PropTypes.bool,
     escapeHtml: PropTypes.bool,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
   static defaultProps = {
-    display: "inline-block",
+    display: 'inline-block',
     trimIndent: false,
-    escapeHtml: false
+    escapeHtml: false,
   };
 
   styles() {
     return css({
       base: {
-        display: this.props.display
-      }
+        display: this.props.display,
+      },
     });
   }
 
