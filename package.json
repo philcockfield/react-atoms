@@ -14,7 +14,7 @@
   "dependencies": {
     "js-util": "^2.0.1",
     "marked": "^0.3.5",
-    "ui-harness": "^3.3.7"
+    "ui-harness": "^3.5.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
