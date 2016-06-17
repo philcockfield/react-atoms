@@ -112,7 +112,7 @@ class Markdown extends React.Component {
       <div
         className={ this.props.className }
         style={ styles.base }
-        dangerouslySetInnerHTML={{ __html: html }} />
+        dangerouslySetInnerHTML={ { __html: html } } />
     );
   }
 }
