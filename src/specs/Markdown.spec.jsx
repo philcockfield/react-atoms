@@ -21,7 +21,7 @@ describe("Markdown", function() {
   const load = (markdown) => {
       this
         .width("100%")
-        .load( <Markdown>{ simple }</Markdown> );
+        .component( <Markdown>{ simple }</Markdown> );
     };
 
 

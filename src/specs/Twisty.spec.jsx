@@ -12,7 +12,7 @@ describe("Twisty", function() {
   };
 
   before(() => {
-    this.load( <Twisty onClick={ handleClick } /> );
+    this.component( <Twisty onClick={ handleClick } /> );
   });
 
   section("width", () => {

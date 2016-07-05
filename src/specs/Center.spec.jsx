@@ -13,10 +13,10 @@ describe("Center", function() {
     this
       .width("100%")
       .height("100%")
-      .load(<Center>{ foo }</Center>);
+      .component(<Center>{ foo }</Center>);
   });
 
-  it("`<Center>`", () => this.load( <Center>{ foo }</Center> ));
-  it("`<CenterX>`", () => this.load( <CenterX>{ foo }</CenterX> ));
-  it("`<CenterY>`", () => this.load( <CenterY>{ foo }</CenterY> ));
+  it("`<Center>`", () => this.component( <Center>{ foo }</Center> ));
+  it("`<CenterX>`", () => this.component( <CenterX>{ foo }</CenterX> ));
+  it("`<CenterY>`", () => this.component( <CenterY>{ foo }</CenterY> ));
 });

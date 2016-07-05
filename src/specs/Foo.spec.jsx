@@ -6,7 +6,7 @@ describe("Foo", function() {
   this.header("## Placeholder component for rapidly stubbing in a UI structure.").hr(true);
 
   before(() => {
-    this.load( <Foo>My text</Foo> );
+    this.component( <Foo>My text</Foo> );
   });
 
   section("radius", () => {
