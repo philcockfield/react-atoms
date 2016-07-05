@@ -20,7 +20,7 @@
     "chai": "^3.5.0",
     "js-babel-dev": "^6.0.6",
     "mocha": "^2.5.3",
-    "ui-harness": "^3.9.4"
+    "ui-harness": "^3.14.0"
   },
   "repository": {
     "type": "git",
