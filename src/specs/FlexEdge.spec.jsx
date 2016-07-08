@@ -43,7 +43,22 @@ describe("FlexEdge", function() {
   });
 
 
+
+
+
   section("load - horizontal", () => {
+
+    it('`DIVs`', () => {
+      this.component(
+        <FlexEdge orientation="horizontal">
+          <div>One</div>
+          <div data-flexEdge={1}>Two</div>
+          <div>Three</div>
+
+        </FlexEdge>
+      );
+    });
+
     it("`icon/main`", () => {
       this.component(
         <FlexEdge orientation="horizontal">
@@ -65,7 +80,7 @@ describe("FlexEdge", function() {
     it("`<nothing>/middle/far`", () => {
       this.component(
         <FlexEdge orientation="horizontal">
-          <div/>
+          <div data-flexEdge={0}/>
           <Sample absolute={0} flexEdge={1}>{ "middle --- " + lorem(300) }</Sample>
           <Sample width={100} height={100}>far</Sample>
         </FlexEdge>

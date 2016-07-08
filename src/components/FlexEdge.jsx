@@ -46,7 +46,7 @@ const childStyle = (props) => {
  *
  *  <FlexEdge align='horizontal'>
  *    <div>left</div>
- *    <div flexEdge={1}>middle (stretched)</div>
+ *    <div data-flexEdge={1}>middle (stretched)</div>
  *    <div>right</div>
  *  </FlexEdge>
  *
@@ -87,7 +87,8 @@ class FlexEdge extends React.Component {
     if (children.length > 0) {
       elChildren = children.map((child, i) => {
         if (child) {
-          const style = child.props.flexEdge && childStyle(child.props.flexEdge);
+          const childFlexEdge = child.props.flexEdge || child.props['data-flexEdge'];
+          const style = childFlexEdge && childStyle(childFlexEdge);
           return <div key={ i } style={ style }>{ child }</div>;
         }
         return undefined;
