@@ -87,7 +87,7 @@ class FlexEdge extends React.Component {
     if (children.length > 0) {
       elChildren = children.map((child, i) => {
         if (child) {
-          const childFlexEdge = child.props.flexEdge || child.props['data-flexEdge']
+          const childFlexEdge = child.props.flexEdge || child.props['data-flexEdge'];
           const style = childFlexEdge && childStyle(childFlexEdge);
           return <div key={ i } style={ style }>{ child }</div>;
         }
